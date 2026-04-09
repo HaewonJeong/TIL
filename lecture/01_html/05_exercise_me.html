@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise_me</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td { padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>정해원 (Haewon Jeong)</h1>
+    <p>안녕하세요! 성장을 즐기는 예비 개발자 <b>정해원</b>입니다.<br>
+       <i>"배움에는 끝이 없다"는 말을 좋아합니다.</i>   
+    </p>
+    <h2>📚보유 기술 (Skills)</h2>
+    <ul>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+    </ul>
+    <hr>
+    <h2>⏰시간표 (Schedule)</h2>
+    <table>
+        <caption>2026년 1학기 시간표</caption>
+        <thead>
+            <tr>
+                <th>시간</th>
+                <th>월요일</th>
+                <th>수요일</th>
+                <th>금요일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1교시</td>
+                <td rowspan="3">웹 프로그래밍 기초</td>
+                <td rowspan="3">자료구조</td>
+                <td>데이터베이스</td>
+            </tr>
+            <tr>
+                <td>2교시</td>
+                <td rowspan="2">보안</td>
+            </tr>
+            <tr>
+                <td>3교시</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <h2>🖼️ 좋아하는 사진</h2>
+    <figure>
+       <img src="sample\image\flower1.PNG" alt="벚꽃 사진" width="300" height="200"> 
+       <figcaption>🌸부농부농 벚꽃 사진 입니다.</figcaption>
+    </figure>
+
+    <h2>🎵 좋아하는 음악</h2>
+    <audio src="sample\audio\major.mp3" controls></audio>
+
+    <h2>🔗 관련 링크 (Links)</h2>
+    <p>저의 포트폴리오를 더 보고 싶다면 <a href="https://github.com/HaewonJeong">제 깃허브</a>를 방문해주세요.</p>
+
+    <h2>📝 방명록 (Guestbook)</h2>
+    
+    <form action="#" method="post">
+        <fieldset>
+            <legend id="guestbook">방명록 작성</legend>
+            <div>
+                <label for="user-name">이름: </label>
+                <input id="user-name" type="text" name="userName" placeholder="이름을 입력하세요.">
+            </div>
+            <div>
+                <label>방문 목적: <br></label>
+                <input type="radio" id="purpose-visit" name="purpose" value="visit" >
+                <label for="purpose-visit">친구 방문</label>
+                <input type="radio" id="purpose-study" name="purpose" value="study" >
+                <label for="purpose-visit">공부</label>
+                <input type="radio" id="purpose-ect" name="purpose" value="ect" >
+                <label for="purpose-visit">기타</label>
+            </div>
+            
+            <div>
+                <label>관심사: <br></label>
+                <input type="checkbox" id="interest-music" name="interest" value="music" >
+                <label for="purpose-visit">친구 방문</label>
+                <input type="checkbox" id="interest-movie" name="interest" value="movie" >
+                <label for="purpose-visit">공부</label>
+                <input type="checkbox" id="interest-excersice" name="interest" value="excersice" >
+                <label for="purpose-visit">기타</label>
+            </div>
+
+            <div>
+                <label for="memo">내용: </label>
+                <textarea name="memo" id="memo" rows="5" placeholder="자유롭게 작성해주세요"></textarea>
+            </div>
+            <button type="submit">남기기</button>
+
+        </fieldset>
+
+    </form>
+</body>
+</html>

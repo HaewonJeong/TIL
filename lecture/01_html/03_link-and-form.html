@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>링크와 폼</title>
+</head>
+<body>
+    <h1>하이퍼링크로 페이지 연결하기</h1>
+
+    <h2>다른 웹사이트로 이동하기</h2>
+
+    <ul>
+        <li><a href="https://www.google.com">구글로 이동</a></li>
+        <li><a href="https://www.naver.com" target="_blank">네이버로 이동</a></li>
+    </ul>
+
+    <h2>같은 폴더의 다른 파일로 이동하기</h2>
+    <ul>
+        <li><a href="01_text-and-list.html">1번 파일(글자와 목록)로 이동</a></li>
+         <li><a href="02_table-and-media.html">2교시 파일(표와 미디어)로 이동</a></li>
+    </ul> 
+
+    <h2>페이지 내부의 특정 위치로 이동하기</h2>
+    <p>
+        <a href="#guestbook">페이지 하단의 방명록으로 바로가기</a>
+    </p>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <hr>
+
+    <h1>폼(Form)으로 사용자 정보 입력받기</h1>
+    <!-- form 태그는 사용자가 입력한 데이터를 서버로 보내는 창구 역할 -->
+    <!-- action: 데이터를 처리할 서버 주소 / method: 데이터 전송 방식 -->
+    <form action="#" method="post">
+        <!-- fieldset: 폼 요소를 그룹화 하여 테두리를 그려줌 -->
+        <fieldset>
+            <legend id="guestbook">방명록 작성</legend>
+            <div>
+                <!-- label for와 input id를 연결하면 사용성 향상(label을 클릭해도 input에 포커스) -->
+                <label for="user-id">아이디: </label>
+                <!-- name은 서버에서 데이터에 대한 키값으로 쓰임 -->
+                <input id="user-id" type="text" name="userId" placeholder="아이디를 입력하세요">
+            </div>
+
+            <div>
+                <label for="user-pw">비밀번호: </label>
+                <input type="password" id="user-pw">
+            </div>
+
+            <div>
+                <p>가입 경로 (하나만 선택): </p>
+                <input type="radio" id="route-internet" name="route" value="internet"> 
+                <label for="route-internet">인터넷 검색</label>
+                <input type="radio" id="route-friend" name="route" value="friend">
+                <label for="route-friend">지인 추천</label>
+            </div>
+
+            <div>
+                <p>관심 분야 (여러개 선택 가능)</p>
+                <input type="checkbox" id="hobby-html" name="hobby" value="html">
+                <label for="hobby-html">HTML</label>
+                <input type="checkbox" id="hobby-css" name="hobby" value="css">
+                <label for="hobby-css">CSS</label>
+                <input type="checkbox" id="hobby-js" name="hobby" value="html">
+                <label for="hobby-js">JS</label>
+            </div>
+
+            <div>
+                <label for="memo">하고싶은 말: </label><br>
+                <textarea name="memo" id="memo" rows="5" placeholder="자유롭게 작성해주세요"></textarea>
+            </div>
+
+            <button type="submit">작성 완료</button>
+            <button type="reset">다시 작성</button>
+        </fieldset>
+    </form>
+
+</body>
+</html>

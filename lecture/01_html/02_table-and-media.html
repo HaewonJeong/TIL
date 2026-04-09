@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표와 미디어</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td { padding: 10px; }
+    </style>
+
+</head>
+<body>
+    <h1>표(table)로 데이터 정리하기</h1>
+    <!-- 전체 표를 감싸는 태그 -->
+    <table>
+        <caption>웹 개발 스터디 시간표</caption>
+        <thead>
+            <!-- tr: Table Row, 표의 한 '행'을 의미 -->
+            <tr>
+                <!-- th: Table Header, 제목 셀. 자동으로 굵게 표시됨 -->
+                <th>시간</th>
+                <th>월요일</th>
+                <th>수요일</th>
+                <th>금요일</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1교시</td>
+                <!-- rowspan="2" : 이 칸은 아래 칸과 합쳐서 '2줄' 차지 -->
+                <td rowspan="2">HTML 기초</td>
+                <td>JavaScript 기초</td>
+                <td>디자인 기초</td>
+            </tr>
+            <tr>
+                <td>2교시</td>
+                <td colspan="2">JavaScript 기초</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <h1>미디어로 페이지 꾸미기</h1>
+    <h2>이미지 넣기</h2>
+    <img
+        src="sample/image/flower5.PNG"
+        alt="예쁜 보라색 꽃"
+        widht="300"
+        height="200">
+        <!-- figure, figcaption: 이미지와 설명을 의식적으로 묶어주는 태그 -->
+    <figure>
+        <img src="sample/image/river1.PNG" alt="시원한 강 사진" widht="300"
+        height="200">
+        <figcaption>멋진 강과 나무 사진입니다.</figcaption>
+    </figure>
+
+    <h2>오디오 넣기</h2>
+    <audio src="sample/audio/major/mp3" controls></audio>
+
+    <h2>비디오 넣기</h2>
+    <video src="sample/video/video1.mp4" controls></video>
+
+
+    
+
+</body>
+</html>

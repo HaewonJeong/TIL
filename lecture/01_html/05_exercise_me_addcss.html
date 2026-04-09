@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise_me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&family=Yeon+Sung&display=swap" rel="stylesheet">
+    <style>
+        table, th, td {
+            border: 0px solid black;
+            text-align: center;
+            margin: 20px auto;
+        }
+        th, td { padding: 10px; }
+
+        body {
+            background-color: rgb(212, 243, 255);
+            display: flex; /*자식들 정렬*/
+            flex-direction: column; /*아이템들을 세로(위->아래)로 나열*/
+            align-items: center; /* 전체 내용을 가로 중앙으로 정렬 */
+            text-align: center;
+        }        
+        section, form {
+            background-color: white;
+            width: 90%;             /* 화면 너비의 90% 사용 */
+            max-width: 650px;       /* 너무 커지지 않게 제한 */
+            padding: 25px;
+            margin-bottom: 10px;    /* 박스 사이 간격 */
+            border-radius: 15px;    /* 모서리 둥글게 */
+            
+            /* 그림자 넣기 (가로 세로 퍼짐 색상) */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;             
+            align-items: center;
+            
+        }
+        .container{            
+            display: flex;
+            padding: 10px;
+        }
+        .skill-badge{           
+            background-color: rgb(53, 106, 252);
+            color: white;
+            border-radius: 20px; /*모서리 둥글게*/
+            display: inline-block; /*크기 조절이 가능하도록 설정*/
+
+            padding: 8px 20px;
+            font-size: 14px;
+            margin-right: 5px; 
+          }
+        
+        .table_title{
+            background-color: rgb(53, 106, 252);
+            border: 1px solid rgb(53, 106, 252);
+        }       
+
+        .submit_btn{
+            background-color: rgb(53, 106, 252);
+            color: rgb(253, 253, 253);
+            border-radius: 20px; /*모서리 둥글게*/
+            border: 0px solid rgb(255, 255, 255);
+            font-family: "Yeon Sung", system-ui;
+        }
+        body {
+        font-family: "Yeon Sung", system-ui;
+        font-weight: 400;
+        font-style: normal;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <section>
+    <h1>정해원 (Haewon Jeong)</h1>
+    <p>안녕하세요! 성장을 즐기는 예비 개발자 <b>정해원</b>입니다.<br>
+       <i>"배움에는 끝이 없다"는 말을 좋아합니다.</i>   
+    </p>
+    </section>
+    <section>
+    <h2>📚보유 기술 (Skills)</h2>
+    <hr>
+
+    <div class="skills-container">
+        <div class="skill-badge">HTML5</div>
+        <div class="skill-badge">CSS3</div>
+        <div class="skill-badge">JavaScript</div>
+    </div>
+    </section>
+
+    <section>
+    <h2>⏰시간표 (Schedule)</h2>
+    <table>
+        <caption><b>2026년 1학기 시간표</b></caption>
+        <thead class="table_title">
+            <tr>
+                <th>시간</th>
+                <th>월요일</th>
+                <th>수요일</th>
+                <th>금요일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1교시</td>
+                <td rowspan="3">웹 프로그래밍 기초</td>
+                <td rowspan="3">자료구조</td>
+                <td>데이터베이스</td>
+            </tr>
+            <tr>
+                <td>2교시</td>
+                <td rowspan="2">보안</td>
+            </tr>
+            <tr>
+                <td>3교시</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    </section>
+     <section>
+    <h2>🖼️ 좋아하는 사진</h2>
+    <figure>
+       <img src="sample\image\flower1.PNG" alt="벚꽃 사진" width="300" height="200"> 
+       <figcaption>🌸부농부농 벚꽃 사진 입니다.</figcaption>
+    </figure>
+
+    <h2>🎵 좋아하는 음악</h2>
+    <audio src="sample\audio\major.mp3" controls></audio>
+
+    <h2>🔗 관련 링크 (Links)</h2>
+    <p>저의 포트폴리오를 더 보고 싶다면 <a href="https://github.com/HaewonJeong">제 깃허브</a>를 방문해주세요!</p>
+    </section>
+
+    <section>
+    <h2>📝 방명록 (Guestbook)</h2>
+    <form action="#" method="post" class="">
+        <fieldset>
+            <legend id="guestbook">방명록 작성</legend>
+            <div>
+                <label for="user-name">이름: </label>
+                <input id="user-name" type="text" name="userName" placeholder="이름을 입력하세요.">
+            </div>
+            <div>
+                <label>방문 목적: </label>
+                <input type="radio" id="purpose-visit" name="purpose" value="visit" >
+                <label for="purpose-visit">친구 방문</label>
+                <input type="radio" id="purpose-study" name="purpose" value="study" >
+                <label for="purpose-visit">공부</label>
+                <input type="radio" id="purpose-ect" name="purpose" value="ect" >
+                <label for="purpose-visit">기타</label>
+            </div>
+            
+            <div>
+                <label>관심사: </label>
+                <input type="checkbox" id="interest-music" name="interest" value="music" >
+                <label for="purpose-visit">친구 방문</label>
+                <input type="checkbox" id="interest-movie" name="interest" value="movie" >
+                <label for="purpose-visit">공부</label>
+                <input type="checkbox" id="interest-excersice" name="interest" value="excersice" >
+                <label for="purpose-visit">기타</label>
+            </div>
+
+            <div>
+                <label for="memo">내용: </label>
+                <textarea name="memo" id="memo" rows="5" placeholder="자유롭게 작성해주세요"></textarea>
+            </div>
+            <button type="submit" class="submit_btn">남기기</button>
+
+        </fieldset>
+
+    </form>
+    </section>
+</body>
+</html>
