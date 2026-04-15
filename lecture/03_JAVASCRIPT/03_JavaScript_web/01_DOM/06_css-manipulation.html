@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 조작하기</title>
+    <style>
+        .box {
+            width : 150px;
+            height : 150px;
+            border : 2px solid black;
+            transition: all 0.3s;
+        }
+
+        .circle { border-radius: 50%; }
+        .red-bg { background-color: crimson; }
+        .big-text { font-size: 24px; color: white; }
+
+    </style>
+</head>
+<body>
+<h1>CSS 조작: 인라인 스타일 vs 클래스 제어</h1>
+
+<hr>
+
+<h3>1. 임시 명찰 붙이기 (인라인 스타일: element.style)</h3>
+<pre>
+    `element.style` 프로퍼티를 사용하면, 해당 요소에 '인라인 스타일'을 직접 추가하거나 변경할 수 있습니다.
+    간단한 동적 효과를 줄 때 유용하지만, 스타일 관리가 복잡해진다는 단점이 있습니다.
+    </pre>
+
+<div id="box1">첫 번째 박스</div>
+
+<script>
+    const $box1 = document.getElementById('box1');
+
+    // .style 프로퍼티로 인라인 스타일 입력
+    // 기존 CSS 규칙이 우선순위가 높아서 인라인 스타일을 쓰면 덮어씌워 질 수 있어 인라인 스타일 비추 
+    $box1.style.width = '200px';
+    $box1.style.height = '100px';
+    $box1.style.backgroundColor = 'skyblue';
+    $box1.style.fontSize = '20px';
+
+</script>
+
+<hr>
+
+<h3>2. '직업' 부여하기 (클래스 제어: element.classList)</h3>
+<pre>
+    스타일은 CSS 파일에 미리 정의해두고, 자바스크립트에서는 클래스를 추가/제거/교체하는 것이
+    가장 현대적이고 효율적인 방법입니다. `element.classList`를 사용합니다.
+    </pre>
+
+<div id="box2" class="box">두 번째 박스</div>
+<button id="changeBtn">모양 바꾸기</button>
+<button id="toggleBtn">배경색 토글</button>
+
+<script>
+    const $box2 = document.getElementById('box2');
+    const $changeBtn = document.getElementById('changeBtn');
+    const $toggleBtn = document.getElementById('toggleBtn');
+
+    //.className은 클래스 전체를 덮어쓰기 때문에 위험해서 잘 사용하지 않는다.
+    //$box2.className = 'circle'; //.box 클래스가 사라져 버림
+
+    console.log($box2.classList);
+
+    $changeBtn.onclick = () => {
+        //class를 추가하기 위해 .add() 사용
+        $box2.classList.add('circle', 'red-bg', 'big-text');
+        console.log($box2.classList);
+    };
+
+    $toggleBtn.onclick = () => {
+        // .toggle(): 클래스가 있으면 제거, 없으면 추가한다.
+        //배경색 토글 버튼을 누르면 두번째 박스 분홍색 배경이 생겼다가 사라진다.
+        const isAdded = $box2.classList.toggle('red-bg'); 
+        console.log(isAdded);
+    };
+    // .contains(): 특정 클랙스가 있는지 확인(true/false)
+    console.log(`box2가 box 클래스를 가지고 있나요?`, $box2.classList.contains('box'));
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 요소 선택</title>
+</head>
+<body>
+    <h1>DOM 요소 선택</h1>
+
+    <hr>
+
+    <h3>`querySelctor`와 `querySelectorAll`</h3>
+    <pre>
+        CSS 선택자를 그대로 사용하여 요소를 찾는, 가장 강력하고 일관성 있는 방법입니다.
+        이 두 가지만 마스터하면 사실상 모든 요소를 선택할 수 있습니다.
+    </pre>
+
+    <ul>
+        <li id="apple" class="fruit red">사과</li>
+        <li class="fruit">바나나</li>
+        <li>딸기</li>
+    </ul>
+
+    <script>
+        // querySelector: CSS 선택자에 맞는 '첫 번째 요소 하나'만 찾아온다.
+        const $apple = document.querySelector('#apple');
+        $apple.style.fontWeight = 'bold';
+
+        const $firstFruit = document.querySelector('.fruit');
+        console.log($firstFruit);
+
+        // querySelectorAll: CSS 선택자에 맞는 '모든 요소'를 NodeList로 찾아온다.
+        const $fruit = document.querySelectorAll('.fruit');
+        console.log($fruit);
+
+        $fruit.forEach(item => {
+            item.style.border = '1px solid blue';
+        });
+    </script>
+    <hr>
+
+    <pre>
+        과거에는 `getElementById`, `getElementsByClassName` 등을 사용했습니다.
+        이 메서드들은 `HTMLCollection`이라는 특별한 목록을 반환하는데,
+        이 목록은 '살아있어서' 예기치 못한 문제를 일으킬 수 있습니다.
+        </pre>
+
+    <div class="box">
+        <p class="text">첫 번째 문단</p>
+        <p class="text">두 번째 문단</p>
+        <p class="text">세 번째 문단</p>
+    </div>
+
+    <script>
+        //HTML에서 class가 box인 요소 하나를 찾아서 $box 변수에 저장한다는 뜻
+        const $box = document.querySelector('.box');
+        //HTMLCollection 취득해서 $text에 저장
+        const $text = $box.getElementsByClassName('text');//선택자 사용할 필요 없음
+        console.log($text);
+        console.log('반복문 시작 전 길이: ', $text.length);
+
+        //for문으로 순회하며 클래스 이름 바꾸기
+        for(let i = 0; i < $text.length ; i++){
+            console.log(`${i}번째 반복문 시작! 현재 $text의 길이는?`,$text.length);
+            //취득해온 리스트에서 i번째 요소에서 text 클래스가 삭제됨
+            $text[i].classList.remove('text'); 
+        }
+        /*>>실시간으로 배열이 바껴서 문제가 생김
+        * $box.getElementsByClassName('text')는 "live(실시간) 컬렉션"
+        */
+       //HTMLCollection은 첫번째 반복문을 돌면서 클래스가 제거 되었을때 실시간으로 반영되어
+       //두번째 반복문때는 세번때 문단의 인덱스가 1번 인덱스가 되어 의도치 않게 두번쨰 문단 클래스가 제거가 건너뛰어진다.
+    </script>
+
+    <hr>
+
+    <h3>3. 결론: 가장 안전한 방법은 '배열'로 바꾸는 것!</h3>
+    <pre>
+        `querySelectorAll`은 이런 문제가 없는 '고정된' `NodeList`를 반환하기 때문에 훨씬 안전합니다.
+        하지만 만약 `getElementsBy...` 같은 메서드를 꼭 써야 한다면,
+        가져온 목록을 **먼저 진짜 배열로 변환한 후 사용하는 것이 가장 안전합니다.**
+        </pre>
+
+    <div class="box">
+        <p class="text2">첫 번째 문단</p>
+        <p class="text2">두 번째 문단</p>
+        <p class="text2">세 번째 문단</p>
+    </div>
+
+    <script>
+        //HTMLCollection으로 받아옴
+        const $texts2 = document.getElementsByClassName('text2');
+
+        //스프레드 문법(...)을 이용해 일반 배열로 변환
+        const textArray = [...$texts2];
+        console.log(textArray);
+
+        textArray.forEach(item =>{ 
+            // 배열 안에 들어있는 요소들(item)을 하나씩 꺼내서, 그 요소의 클래스에서 text2를 제거
+            // 즉, HTML 요소들이 이렇게 바뀌는 거야:
+            // <p class="text2">hello</p>
+            // → 실행 후
+            // <p class="">hello</p>
+            item.classList.remove('text2'); 
+
+            /*textArray로 반복하고 있기 때문에
+            배열 길이는 고정 (3개면 계속 3개)
+            중간에 DOM이 바뀌어도 반복문이 안전함*/
+
+        });
+        console.log('작업 후 $text2의 길이: ',$texts2.length); //0, 실시간으로 비어 있음
+        console.log('작업 후 $textArray의 길이: ',textArray.length); //3, 찍어둔 시점 그대로
+    </script>
+</body>
+</html>

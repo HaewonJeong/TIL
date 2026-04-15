@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>마우스와 키보드 이벤트</title>
+    <style>
+        .area {
+            background: lightgray; border: 1px solid black;
+            min-height: 100px; margin-top: 10px; padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>마우스와 키보드 이벤트</h1>
+<hr>
+<h3>1. 마우스 이벤트</h3>
+<pre>
+    사용자의 마우스 움직임에 반응합니다.
+    `click`(클릭), `dblclick`(더블클릭), `mousedown`(누를때), `mouseup`(뗄때), `mousemove`(움직일때) 등이 있습니다.
+    </pre>
+
+<button id="mouse-btn">여기를 클릭/우클릭 해보세요</button>
+<div id="mouse-area" class="area"></div>
+<script>
+   const $mouseBtn = document.getElementById('mouse-btn');
+   const $mouseArea = document.getElementById('mouse-area');
+
+   //click: 마우스 왼쪽 버튼을 눌렀다 "뗏을 때" 발생
+   $mouseBtn.addEventListener('click',(e)=>{
+        //innerHTML 
+        //마우스를 클릭했다가 땔때 이벤트 동작
+        $mouseArea.innerHTML += 'click 이벤트 발생!<br>';
+   });  
+   //dblclick : 더블클릭
+   $mouseBtn.addEventListener('dblclick',(e)=>{
+        //innerHTML 
+        //마우스를 클릭했다가 땔때 이벤트 동작
+        $mouseArea.innerHTML += 'click 이벤트 발생!<br>';
+   });   
+     //mousedown : 마우스 버튼을 "누르는 순간" 발생
+     //e.button 어떤 버튼 클릭했는지 -> 0: 왼쪽, 1: 가운데, 2:오른쪽 
+    $mouseBtn.addEventListener('mousedown', (e) => {
+        $mouseArea.innerHTML += `mousedown, button=${e.button}<br>`;
+
+    });
+    //contextmenu: 마우스 오른쪽 버튼을 눌렀을때
+    $mouseBtn.addEventListener('contextmenu', (e)=>{
+        //마우스 우클릭 시 브라우저 기본 메뉴가 뜨는 것을 막는다.
+        e.preventDefault(); 
+        $mouseArea.innerHTML += `contextmenu 이벤트 발생! (기본 메뉴 차단)<br>`;
+    });
+
+   
+</script>
+
+<hr>
+
+<h3>2. 키보드 이벤트</h3>
+<pre>
+    사용자의 키보드 입력에 반응합니다.
+    - keydown: 키를 누르는 순간 (누르고 있는 동안 계속 발생)
+    - keyup: 키에서 손을 떼는 순간
+    - event.key: 입력된 문자를 알려줌 (ex: 'a', 'A', 'Enter')
+    - event.code: 실제 물리적인 키 코드를 알려줌 (ex: 'KeyA', 'Enter')
+    </pre>
+
+<input type="text" id="keyboard-input" placeholder="아무 키나 입력하세요">
+<div id="keyboard-area" class="area"></div>
+<script>
+   const $keyboradInput = document.getElementById('keyboard-input');
+   const $keyboradArea = document.getElementById('keyboard-area');
+
+   $keyboradInput.addEventListener('keydown', (e)=>{
+        $keyboradArea.innerHTML = `
+             keydown 이벤트 발생! <br>
+             //code: 입력한 키 값 종류 표시
+             //키보드의 물리적 레이아웃에 따라 결정
+             e.key: ${e.key}<br> 
+             //keyCode: 입력한 키 code 표시
+             //키보드의 물리적 키에 매핑된 숫자 코드.
+             //오래된 API이며 현재는 사용이 권장되지 않음.(더 이상 최신 브라우저에서 지원되지 않음)
+             e.code: ${e.code}`;
+      
+            //실무 예: 'Enter'키를 눌렀을 때 검색 실행
+            if(e.key === 'Enter'){
+                    console.log('검색을 실행합니다!');                
+                    //실제 검색 함수를 여기에 호출
+            }      
+   });
+
+   $keyboradInput.addEventListener('keyup', (e)=>{
+        console.log('keyup 이벤트 발생!');
+   })
+
+</script>
+</body>
+</html>
