@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2_Event-문제</title>
+  <style>
+    .area {
+      border: 1px solid red;
+      min-height: 200px;
+    }
+
+    .view,
+    .edit {
+      height: 150px;
+      width: 400px;
+      font-family: sans-serif;
+      font-size: 14px;
+      display: block;
+    }
+
+    .view {
+      padding: 2px;
+      border: 1px solid black;
+    }
+
+    .edit {
+      border: 3px solid blue;
+      padding: 0px;
+    }
+
+    .edit:focus {
+      outline: none;
+    }
+    
+    .contenteditable{
+        contenteditable:"true";
+    }
+
+  </style>
+</head>
+<body>
+  <h3>문제 1</h3>
+  <p>
+    추가하기 버튼을 한 번 클릭하면 가로, 세로 100px, 1px의 직선 검은 테두리를 가진 빨간색 div를 area1 내부에 추가하고
+    한 번 더 클릭하면 같은 스타일의 노란색 div를 area1 내부에 추가한다.<br>
+    삭제하기 버튼을 누르면 마지막에 추가 된 div를 삭제한다.<br>
+    div는 수직이 아닌 수평으로 추가되어야 하며 삭제 된 div 이후에 추가 될 때도 빨간색과 노란색 div가 번갈아가며 추가 되어야 한다.
+  </p>
+  <button id="add">추가하기</button>
+  <button id="remove">삭제하기</button>
+  <div id="area" class="area"></div>
+  <script>
+    // 코드 작성
+    const $addBtn = document.getElementById('add');
+    const $RemoveBtn = document.getElementById('remove');
+    const $area = document.getElementById('area');
+    
+    let count=0;
+    $addBtn.addEventListener('click', function(){
+        console.log('클릭');
+        count++;
+        console.log(count);
+        var square = document.createElement('div');
+
+        if(count%2 != 0){
+        square.innerHTML = '<div style="width:100px; height:100px; border: 1px solid black ; background-color: red ; float:left; "></div>';
+        }
+        else{
+        square.innerHTML = '<div style="width:100px; height:100px; border: 1px solid black ; background-color: yellow ; float:left; "></div>';
+        }
+        document.getElementById('area').appendChild(square);
+        
+    });
+
+    $RemoveBtn.addEventListener('click', function(){
+        console.log('클릭');
+        count--;
+        var parent = document.getElementById('area');
+        //parent.innerHTML = '<div style="width:100px; height:100px; border: 1px solid black;"></div>';
+        parent.removeChild(parent.lastChild);
+        
+    });
+  </script>
+
+
+  <h3>문제 2</h3>
+  <p>
+    div를 클릭하면 textarea로 변경이 되고 그 안에서 값을 입력한 뒤
+    Enter를 누르거나 blur 이벤트가 발생하면 결과를 div 안에 저장한다.<br>
+    (HTML을 적으면 태그로 기능한다)<br>
+    * 참고 : textarea 태그를 만들면 edit이라는 클래스명을 부여해준다. (CSS 설정이 있음) <br>
+    node.replaceWith(노드나 문자열) 메소드를 사용해본다.
+  </p>
+  <div id="view" class="view">여기를 클릭해서 내용을 입력하세요.</div>
+
+  <script>
+    const $btn1 = document.getElementById('view');
+    // 코드 작성
+    $btn1.addEventListener('click', function(){
+        //선생님 said.......
+        //div를 클릭하면 creatElement로 textare를 div위에 띄워준다.
+        //이때 node.replacewith라는 것을 사용해봐라
+        //그리고 텍스트를 입력하고 Enter를 입력하면
+        //div에 뜨는 텍스트가 그 내용이 된다는것...
+        //집에 가서 해봐야겠다.
+      
+      
+        //const $view = document.getElementById('view');
+        //div가 textarea로 변경
+        //document.$view.sytle.add('.contenteditable');
+        
+        
+        //Enter 입력 
+        $keyboradInput.addEventListener('keydown', (e)=>{
+        $keyboradArea.innerHTML = `123`;
+      
+            //실무 예: 'Enter'키를 눌렀을 때 검색 실행
+            if(e.key === 'Enter'){
+                    console.log('검색을 실행합니다!');                
+                    //실제 검색 함수를 여기에 호출
+            }      
+   });
+    });
+
+  </script>
+
+</body>
+</html>
