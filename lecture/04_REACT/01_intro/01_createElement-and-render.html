@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+</head>
+<body>
+    <!--React를 사용할 Root div를 만듦 -->
+    <div id="root"></div> 
+
+    <script> //Javascript 코드라서 Script 안에 선언해줘야 함
+        
+        /*1. 고전적인 방법. 명령형 프로그램*/
+        const h1 = document.createElement('h1'); //h1 태그 만듦
+        h1.textContent = 'Hello, JS!'; //텍스트 넣음
+        document.getElementById("root").appendChild(h1);//h1을 root의 자식으로 추가
+        
+        console.log(React);//console로 찍어보면 많은 Object 나옴
+
+        /*2. React 방법*/
+        //2.설계도. 선언형.
+        const greeting = React.createElement('h1', {className : "greeting"}, "Hello, React!");//class JS 예약어로, React는 className으로 사용
+        console.log(greeting); //찍어보면 JS가 나옴
+
+        // createElement("엘리먼트", '어트리뷰트', '텍스트 노드')
+        ReactDOM.createRoot(document.getElementById("root")).render(greeting);//render에 만든 설계도를 넣어주면 React가 알아서 해줌
+        //React에서 화면을 띄우는 핵심 1줄
+        //ReactDOM에게 Root를 생성해라. root IDV를 잡고 React를 연결해서 render 화면을 그린다.
+        //root에서 부터 React를 관리한다는 뜻?? 
+
+
+
+    </script>
+</body>
+</html>

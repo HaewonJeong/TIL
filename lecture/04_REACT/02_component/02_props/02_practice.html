@@ -1,0 +1,108 @@
+<!-- state 쓰지 않는 컴포넌트 연습 예제 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        
+        const user1 = {
+            name: '판다',
+            age: 3,
+            phone: '010-1234-5678',
+            email: 'panda@gmail.com'
+        }
+        const user2 = {
+            name: '다람쥐',
+            age: 5,
+            phone: '010-1234-8765',
+            email: 'squirrel@gmail.com'
+        }
+        const user3 = {
+            name: '원숭이',
+            age: 6,
+            phone: '010-4321-5678',
+            email: 'monkey@gmail.com'
+        }
+        
+        //Name에 대한 컴포넌트
+        function NameCard({name}){
+            return (
+                <>
+                <p>{name}</p>
+                </>
+            ) //return문이 여러줄이면 () 넣고, 아니면 안넣어도 됨.
+        }
+        //Age에 대한 컴포넌트
+        function AgeCard({age}){
+            return (
+                <>
+                <p>{age}</p>
+                </>
+            )
+        }
+        //Phone에 대한 컴포넌트
+        function PhoneCard({phone}){
+            return (
+                <>
+                <p>{phone}</p>
+                </>
+            )
+        }
+        //Email에 대한 컴포넌트
+        function EmailCard({email}){
+            return (
+                <>
+                <p>{email}</p>
+                </>
+            )
+        }
+
+        //부모. 위 4가지 컴포넌트를 합성.
+        function UserInfo( {user} ){
+            //넘겨 받은 props를 user에서만 꺼낸다.
+            //객체 구조분해 할당
+            //같은 코드:
+            //function UserInfo(props){
+            // const user = props.user;
+            //}
+            return (
+                <>
+                    <div
+                    style={ {fontWeight : 'bold', width:'200px',height:'200px', border: '1px solid black', margin: '5px'} }
+                    >
+                    <NameCard name={user.name} /> 
+                    <AgeCard age={user.age} /> 
+                    <PhoneCard phone={user.phone} /> 
+                    <EmailCard email={user.email} />         
+                    </div>
+                    
+                </>
+            ) ; 
+        }
+        //위 3개 UserInfo를 합성하는 App
+        function App(){
+            return(
+                <>  
+                    {/*user1 변수를 props로 넘긴다. JSX에서 {} = JS 객체 변수*/}
+                    <UserInfo user={user1} />
+                    <UserInfo user={user2} />
+                    <UserInfo user={user3}/>
+                </>
+            )
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<App /> );
+
+    </script>
+</body>
+</html>

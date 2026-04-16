@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- React에서 props 타입을 검사(검증)하기 위해 쓰는 라이브러리 -->
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        
+        /*
+        * Props: 부모 컴포넌트가 자식 컴포넌트에게 데이터를 전달하는 '통로'
+        * - 읽기 전용(read-only) 데이터이다. (자식은 Props를 수정할 수 없음)
+        * - 데이터는 항상 위에서 아래로 흐른다.
+        */
+
+        //함수의 매개변수 props 삽입.부모로부터 데이터를 받기 위한 객체.
+        // function Greeting(props){
+        //     return (
+        //         <h1>안녕하세요, {props.name}!</h1>  //props 라는 객체에 name이라는 프로퍼티에 있는 값을 꺼내온다.
+        //     )
+        // }
+        //name = '기본이름'. 부모가 Props를 전달하지 않았을 겨우를 대비한 '기본값'을 설정 할 수 있다.
+        function Greeting({name = '기본이름', favoriteNumber, children}){ //매번 props를 사용하기 번거로움. 구조분해 할당 방식 사용. 구조분해는 "이름이 정확히 같아야함" 이름 바꿔서 받으려면  { name: userName } 방식.
+            return (
+                <>
+                {/*props 라는 객체에 name이라는 프로퍼티에 있는 값을 꺼내온다.*/}
+                <h1>안녕하세요, {name}!</h1>  
+                <h2>제가 좋아하는 숫자는 {favoriteNumber} 입니다.</h2>
+                <p>
+                    <strong>전달된 자식 요소(children): {children}</strong>
+                </p>
+                </>
+            )
+        }
+        /*
+        * propTypes
+        * - 각 Prop이 어떤 '타입'이여야 하는지, '필수'인지 아닌지를 검사한다.
+        * - 규칙이 맞지 않으면 브라우저 콘솔에 경고를 표시하여 실수를 방지한다.
+        */
+        Greeting.propTypes = {
+            name: PropTypes.string,
+            favoriteNumber: PropTypes.number
+        }
+
+        function App(){
+            const name1 = '홍길동';
+            const name2 = '유관순';
+
+            return(
+
+                //<Greeting name="홍길동" /> //props. App이 Greeting라는 이름으로 홍길동 name을 전달.
+                //<Greeting name="홍길동" favoriteNumber={3}/> //favori~ value. 3은 key값
+                //<Greeting name={name1} favoriteNumber={3}/> 
+                <Greeting name={"홍길동"} favoriteNumber={3}> 
+                    React 공부 중이에요~!
+                </Greeting>
+          
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+    </script>
+</body>
+</html>

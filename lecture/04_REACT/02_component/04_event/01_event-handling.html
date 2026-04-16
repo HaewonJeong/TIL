@@ -1,0 +1,171 @@
+<!--React를 CDN으로 불러온다.
+useState 훅을 사용해서 상태를 관리하고
+JSX 문법으로 <input /> 같은 컴포넌트 UI를 작성 한다.
+즉, React 함수형 컴포넌트 + useState + 이벤트처리(onChange) 예제
+React에서 폼 입력값을 상태로 관리하는 기본 패턴을 배우는 코드
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        
+        const {useState} = React;
+        //설명: 객체 구조분해 할당. 이름(key)로 꺼냄!!
+        //const useSate = React.useState; 와 같은 뜻
+        //즉 React 안에 있는 것 :
+        //React = {
+        //   useState: function(){...}
+        //   useffect: function(){...}
+        //   createElement: ...
+        //}
+        function SignupFormBasic(){
+
+            //[상태 값, 상태 변경 함수 반환] = useState(초기값);
+            //배열 구조분해 할당
+            //얘는 사실 아래랑 같은 뜻 :
+            //const username = state1[0];
+            //const setUsername = state1[1];
+            const [username, setUsername] = useState('');
+            const [email, setEmail] = useState('');
+
+            const handleSignup = () => {
+                alert(`아이디: ${username} 이메일: ${email} 회원가입 완료!`);
+                setUsername('');
+                setEmail('');
+            }
+
+            return(
+                <div>
+                    <h2>기본적인 이벤트 처리</h2>
+                    {/*계속 자주 쓰게 될 형태*/} 
+                    <input 
+                        type="text"
+                        placeholder = '아이디'
+                        value={username}
+                        onChange={e => setUsername(e.target.value)} //e.target <- 클릭한 것
+                    />
+                    <input 
+                        type="email"
+                        placeholder = '이메일'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)} 
+                    />
+                    <button onClick={handleSignup}>가입하기</button>
+                </div>
+            );
+        }
+
+        //개선된 방식
+        function SignupFormAdvanced(){
+            //관련된 상태들을 하나의 객체로 묶어서 관리!
+            const [form, setForm] = useState({
+                username: '',
+                email: ''
+            });
+
+            const handleChange = (e) => {
+                //e.target에서 객체 구조분해 할당해옴
+                //<--여기도 먼말인지 모르곘음;;(복습)
+                //e.target.name에 접근
+
+                //e.target에서 name과 value를 미리 추출
+                const { name, value } = e.target;
+
+                setForm({
+                    //스프레드 문법을 사용해 객체를 펼쳐서 복사
+                    // const [form, setForm] = useState({
+                    // username: '',
+                    //email: ''
+                    ...form, //기존 폼 객체를 복사해야, 기존 객체는 살고 변경된 객체. value를 덮어쓰겠다.
+                    [name]: value //변경이 일어난 input의 name을 key로 삼아 새로운 value로 덮어씀
+                }) //<--여기도 모르겠다.(복습)
+            }
+
+            const handleSignup = () => {
+                alert(`아이디: ${username} 이메일: ${email} 회원가입 완료!`);
+                setForm ({username: '', email: ''} );//여기 못적음
+
+            }
+
+            const {username, email} = form;//구조 분해 할당
+            //<--솔직히 여기도 원래 무슨 형태인지 모르겠음;;(복습)
+
+            return(
+                <div>
+                    <h2>효율적인 이벤트 처리</h2>
+                    {/*계속 자주 쓰게 될 형태*/} 
+                    <input 
+                        type="text"
+                        name="username" //state 객체의 키와 동일한 이름 설정
+                        placeholder = '아이디'
+                        value={username}
+                        onChange={handleChange}  //e.target <- 클릭한 것
+                        //(에러) 여기 에러남. 복습하기.
+                    />
+                    <input 
+                        type="email"
+                        name="email" //state 객체의 key와 동일한 이름으로 맞추기
+                        placeholder = '이메일'
+                        value={email}
+                        onChange={handleChange} 
+                    />
+                    <button onClick={handleSignup}>가입하기</button>
+                </div>
+            );
+
+
+        }
+
+        //마지막. 새로운 컴포넌트.
+        //부모와 자식이 props로 소통하는 것.
+        function CustomButton( { event, children } ){
+            return(
+                <button
+                    onClick={event}                    
+                    style={ {backgroundColor: 'black', color:'white', border: 'none'} }>
+                    {/* 스타일 주기 */}
+                    {/*인사 텍스트 안쓰고 아래 써준 children 써줌. (이것도 복습)*/}
+                    {children} 
+                </button>
+            )
+        }
+
+        function App () {
+            //showWelcomeMessage 이벤트 핸들러 함수 작성
+            const showWelcomeMessage = () => {
+                alert('우리 사이트에 오신 것을 환영합니다.');
+            }
+
+            return (
+                <>
+                    <SignupFormBasic />
+                    <hr />
+                    <SignupFormAdvanced />
+
+                    <div>
+                        <h2>Props로 이벤트 함수 전달하기</h2>
+                        <CustomButton event={showWelcomeMessage}>
+                            환영 메세지 보내기
+                        </CustomButton>
+                    </div>
+                </>
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        //1. 현재 실시간을 나타내주는 Clock 컴포넌트 선언.
+        function Clock() {
+            return (
+                <div>
+                    <h1>실시간 시계</h1>
+                    <h2>현재 시간: {new Date().toLocaleTimeString()}</h2>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        console.log(root);
+        function tick(){
+            //2. Clock 컴포넌트를 Root div에 랜더링.
+            root.render(<Clock />);
+        }
+        //3. tick 함수를 1초마다 렌더링. setInterval 걸어줌
+        setInterval(tick, 1000);
+        //개발자도구 > Element 확인 시 시간만 업데이트 됨
+        // Diffing 알고리즘: Virtual DOM과 비교하여 실제로 바뀐 부분만 실제 DOM에 반영
+        // Diffing 알고리즘 통해 1초전과 뭐가 바꼈는지 비교. 
+        
+    </script>
+</body>
+</html>
