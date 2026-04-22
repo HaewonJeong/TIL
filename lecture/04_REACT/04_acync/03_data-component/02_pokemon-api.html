@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        .item{
+            background-color: white;
+            border: 1px dotted black;
+            width: 350px;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel"> 
+    
+        const API_URL = 'https://pokeapi.co/api/v2/pokemon';
+        //앞모습
+        //sprites.other.dream_world.front_default
+
+        const {useEffect, useState} = React;
+
+        function Title(){
+            return <h1>포켓몬 목록</h1>
+        }
+
+        function ItemList(){
+            const [pokemons, setPokemons] = useState([]); //서버에서 받아올 포켓몬 목록. 초기값.
+            const [loading, setLoading] = useState(true); //로딩상태
+            const [error, setError] = useState(null); //에러 상태
+
+            useEffect( () => {
+                //1. 서버의 응답(Response) 객체가 도착하면 실행
+                //1. 최초 포켓몬 목록(이름과 상세정보 url)을 가져온다.  
+                fetch(API_URL)
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error(`HTTP error ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('data', data);
+                    
+                    const detailPromise = data.results.map( pokemon => {
+                        return fetch(pokemon.url).then(res => {return res.json(); })
+                    });
+                    return Promise.all(detailPromise);
+
+                    /*
+                    안 들어가는 이유는 map 안에서 fetch 결과를 return 안 해서 detailPromise 배열이 전부 undefined가 되기 때문입니다.
+                    지금 코드:
+                        const detailPromise = data.results.map(pokemon => {
+                        fetch(pokemon.url).then(res => {
+                            return res.json();
+                        })
+                        });
+
+                    이렇게 쓰면 map은 결국 이런 배열을 만듭니다:
+                    [undefined, undefined, undefined, ...]
+
+                    왜냐하면 {} 블록을 썼는데 return fetch(...) 를 안 했기 때문입니다.
+
+                        ✅ 올바른 코드 (핵심 수정)
+                        const detailPromise = data.results.map(pokemon => {
+                        return fetch(pokemon.url).then(res => res.json());
+                        });
+                        */
+                })
+                .then(detailPromise => {
+                    console.log('detail', detailPromise);
+                    setPokemons(detailPromise);
+                    console.log('pokemons',pokemons);
+                })
+                .catch(error=> {
+                    console.log('데이터를 불러오는데 실패했습니다.',error);
+                    setError(error);
+                })
+                .finally( () => setLoading(false) );
+                
+            },[] );
+            console.log(pokemons);
+            //Early Return 패턴
+            if(loading){
+                return <p>로딩중...</p>
+            }
+            if(error){
+                return <p>오류가 발생했습니다.: {error.message}</p>
+            }
+            return(
+                <div>
+                    {pokemons.map( function (pokemon, index){  
+                        return <Item key={pokemon.id} pokemon={pokemon} no={pokemon.id} />;} )} 
+                </div>
+            ) 
+
+            }   
+            function Item({pokemon, no}){
+                return (
+                    <div className="item"> 
+                        <img src={pokemon.sprites.other.dream_world.front_default} alt="pokemon image"  />
+                        <h4>No. {no}</h4>
+                        <p>name: {pokemon.name}</p>
+                    </div>
+                )
+            }        
+
+        function App(){
+            return(
+                <>
+                    <Title/>
+                    <ItemList /> 
+                </>
+            )
+        }
+        
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+    </script>
+</body>
+</html>

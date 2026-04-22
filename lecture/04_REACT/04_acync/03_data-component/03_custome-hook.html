@@ -1,0 +1,135 @@
+
+ <!--Customhook 예제
+ -현업에서는 React Query(TanStack Query)를 사용한다.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        .item{
+            background-color: bisque;
+            border: 1px dotted black;
+            width: 350px;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel"> 
+        const { useEffect, useState } = React;
+
+        function useFetch(url){
+
+            const [data, setData] = useState(null); //서버에서 받아올 목록 초기화. 어떤 값이 들어올지 몰라서 null
+            const [loading, setLoading] = useState(true); //로딩상태
+            const [error, setError] = useState(null); //에러 상태
+
+            useEffect(() => {
+
+            //컨트롤러가 사라지기 직전 useeffect의 cleanup 함수가 동작
+            //통신 강제 취소 스위치 생성
+            const controller = new AbortController();
+            
+            //fetch 옵션에 연결
+            fetch('https://jsonplaceholder.typicode.com/users', {signal: controller.signal})
+                .then(response => {
+                    //fetch문은 if(response.ok) 무조건 체크
+                    if(!response.ok){
+                        throw new Error('네트워크 응답 문제가 있습니다.');
+                    }
+                    return response.json();     
+                })//fetch가 성공해서 response를 받으면 then이 실행됨.
+                //responseUsers: 바로 위 response.json()의 결과값이 자동으로 들어오는 변수
+                .then(responseData => setData(responseData)) //= return response.json(); 
+                .catch(error => {
+
+                    if(error.name === 'AbortError'){
+                        console.log('통신이 정상적으로 중단되었습니다.');
+                    }else{
+                        console.error('데이터를 불러오는 데 실패했습니다.',error);
+                        setError(error); //에러 발생 시 에러 상태에 저장
+                    }
+                })
+                .finally( () => setLoading(false)); //로딩상태 false로 바꿔준다.
+
+                //return 사용 시 useEffect의 클린업 함수 호출
+                //이 hook을 쓰던 컴포넌트가 화면에서 사라지면 즉시 취소
+                return () => controller.abort();
+            },[url]);
+            /* 의존성 배열안에 속성이 변경되도 useEffect가 재실행 되는지 ? 
+                : 객체/배열 → 주소(참조)가 바뀌어야 실행됨. 재실행 X
+                  원시타입 → 값만 바뀌면 실행됨. 
+                */
+         
+            return { data, loading, error } //묶어서 객체로 반환 예정
+        }
+
+        function Title(){
+            return <h1>회원 목록</h1>
+        }
+
+        function ItemList(){ //☆컴포넌트 이름 대문자
+
+            //cuscom hook 호출
+            //통신에 대해 custome hook을 만들고, 데이터 통신이 필요한 곳에 사용
+            //이렇게하면 ItemList에 useEffect가 사라짐
+            const {data: users, loading, error} = useFetch('https://jsonplaceholder.typicode.com/users')
+
+            //Early Return 패턴
+            if (loading){
+                return <p>로딩중...</p>
+            }
+            if (error){
+                return <p>오류가 발생했습니다: {error.message}</p>
+            }
+            if (!users){
+                return <h3>데이터가 없습니다.</h3>
+            }
+            //데이터가 보장된 상태
+            return(
+                <div>
+                    { users.map( user => <Item key={user.id} user={user}/>  )}
+                </div>
+            )
+
+        }
+        function Item({user}){
+            return (
+                <div className="item">
+                    <h4>{user.name}</h4>    
+                    userId : {user.id} <br />
+                    email : {user.email} <br />
+                    phone : {user.phone} <br />
+                    company name: {user.company?.name} 
+                    {/* 옵셔널 체이닝 연산자 [?] 사용(에러 방지)
+                        user.company가 존재하면 → .name 접근해서 출력
+                        user.company가 없으면(undefined/null이면) → 그냥 undefined 반환하고 에러 안 냄
+                    */}
+                </div>
+            )
+        }
+
+        function App(){
+            return(
+                <>
+                    <Title/>
+                    <ItemList />                
+                </>
+            )
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+    </script>
+</body>
+</html>

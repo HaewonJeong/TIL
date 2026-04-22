@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        .item{
+            background-color: white;
+            border: 1px dotted black;
+            width: 350px;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel"> 
+    
+        const API_URL = 'https://pokeapi.co/api/v2/pokemon';
+        //앞모습
+        //sprites.other.dream_world.front_default
+
+        const {useEffect, useState} = React;
+
+        function Title(){
+            return <h1>포켓몬 목록</h1>
+        }
+
+        function ItemList(){
+            const [users, setUsers] = useState([]); //서버에서 받아올 유저 목록. 초기값.
+            const [loading, setLoading] = useState(true); //로딩상태
+            const [error, setError] = useState(null); //에러 상태
+
+            useEffect( () => {
+                 fetch(API_URL)
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error('네트워크 응답 문제가 있습니다.');
+                    }
+                    return response.json();     
+                })
+                .then(responseUsers => setUsers(responseUsers)) 
+                .catch(error => {
+                    console.error('데이터를 불러오는 데 실패했습니다.',error);
+                    setError(error); 
+                })
+                .finally( () => setLoading(false)); 
+
+            },[] ); 
+            if (loading){
+                return <p>로딩중...</p>
+            }
+            if (error){
+                return <p>오류가 발생했습니다: {error.message}</p>
+            }
+            return(
+                <div>
+                    {users.map(user => <Item key={user.id} user={user}/>                 )}
+                </div>
+            )
+
+            function Item({user}){
+            return (
+                <div className="item">
+                    <h4>No.</h4>    
+                    userId : {user.name} <br />
+                    
+                </div>
+            )
+        }
+
+
+        }
+
+        function App(){
+            return(
+                <>
+                    <Title/>
+                    <ItemList /> 
+                </>
+
+            )
+        }
+        
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+    </script>
+</body>
+</html>

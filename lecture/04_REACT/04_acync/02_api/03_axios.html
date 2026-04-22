@@ -1,0 +1,63 @@
+<!-- 
+axios: fetch의 불편함을 개선한 라이브러리
+1) 기본 성격
+-fetch: 브라우저에 원래 내장된 기본 기능(API)
+-axios: 외부 라이브러리(설치/CDN 필요) 
+2) JSON 처리 차이
+-fetch: 응답을 JSON으로 쓰려면 직접 변환
+외부 라이브러리(설치/CDN 필요) 
+-axios: 자동으로 JSON 파싱
+3) 에러 처리 방식 차이 (중요)
+-fetch: HTTP 에러(404, 500)가 나도 catch로 안 감
+즉, fetch는 실패로 취급하지 않고 response를 줍니다.
+그래서 직접 검사해야 합니다.
+-axios: 404, 500 같은 HTTP 에러면 자동으로 catch로 감
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <script>
+
+        const API_URL = 'https://jsonplaceholder.typicode.com/users/1';
+
+        //fetch 사용
+        async function callApiWithFetch(){
+
+            try{
+                const response = await fetch(API_URL); 
+                //*fetch 사용 시 if(response.ok) 필수. 여기선 예제라서 생략. 
+                const data = await response.json(); //json()으로 직접 파싱
+                console.log(data);
+            }catch(error){
+                console.error(error);
+            }
+        }
+        //axios 사용
+        async function callApiWithAxios(){
+            try{
+                const response = await axios.get(API_URL); // .get(), .post()등 직관적 메소드 사용
+                const data = response.data;  //자동으로 JSON 파싱
+                console.log('axios data: ', data);
+                console.log('axios response', response); 
+            }
+            catch(error){
+                console.error(error);
+            }
+        }
+        callApiWithAxios();
+        callApiWithAxios();
+
+    </script>
+</body>
+</html>
