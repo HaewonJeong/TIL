@@ -1,4 +1,5 @@
 - 🛠️ VS Code 작업 공간 전환하기
+
 현재 캡처해주신 VS Code 화면을 보면, 아직 기존에 공부하시던 Songpa-TIL 폴더가 통째로 열려있습니다. 이 상태로 코딩을 하면 파일 찾기도 헷갈리고 터미널 경로도 꼬이기 쉽습니다.
 
 VS Code 상단 메뉴에서 파일(File) > 폴더 열기(Open Folder)를 클릭하세요.
@@ -183,3 +184,34 @@ await axios.post('http://localhost:3001/comments', {
 &lt;	<	Less Than(<) 문자, HTML 태그 시작 기호 < 를 나타낼 때 사용
 &gt;	>	Greater Than(>) 문자, HTML 태그 끝 기호 > 를 나타낼 때 사용
 &quot;	"	Quotation Mark(") 문자, 속성값의 따옴표 " 를 나타낼 때 사용
+
+- 내 PC에서 한 작업 branch로 올리고 실습실 컴퓨터로 받아오기
+```
+1. 현재 상태 확인 및 저장 (터미널)
+가장 먼저 작업하던 서버(npm run dev나 npm run db)는 Ctrl + C를 눌러서 잠시 꺼주세요. 그 다음 터미널에 아래 명령어를 순서대로 입력합니다.
+
+① 변경된 파일들 담기
+Bash
+git add .
+의미: "오늘 수정한 모든 파일(MusicApi, MusicStore, Page.js 등)을 다 가방에 넣어줘!"
+
+② 저장 메시지 남기 (기록)
+Bash
+git commit -m "feat: 음악 목록 조회 기능 및 Zustand 스토어 구현"
+의미: "이 가방에 '음악 조회 기능 완성함'이라는 쪽지를 붙여서 내 컴퓨터에 저장해줘!"
+
+③ 원격 저장소(GitHub)로 보내기
+Bash
+git push origin 내브랜치이름
+의미: "드디어 이 가방을 내 이름으로 된 온라인 창고(origin)에 올려줘!"
+주의: 내브랜치이름 자리에 지금 작업 중인 브랜치명(예: feature/music 등)을 적으시면 됩니다. (잘 모르겠다면 git branch라고 쳐보세요!)
+
+2. 내일 실습실 컴퓨터에서 할 일
+내일 실습실 컴퓨터 앞에 앉으시면, "어제 내가 올린 거 가져오기"부터 시작하면 됩니다.
+
+실습실 컴퓨터에서 프로젝트 폴더 열기 (이미 클론 되어 있다고 가정)
+내 브랜치로 이동: git checkout 내브랜치이름
+최신 코드 가져오기: git pull origin 내브랜치이름
+라이브러리 확인: 혹시 모르니 npm install 한 번 해주기
+서버 켜기: npm run dev 와 npm run db
+```
