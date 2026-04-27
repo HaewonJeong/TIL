@@ -10,8 +10,8 @@ export default function QueryPage(){
      */
 
     const { data, isLoading, isError, error } = useQuery( {
-        queryKey: ["users"],
-        queryFn: fetchUsers,
+        queryKey: ["users"], //import
+        queryFn: fetchUsers, //import
     } );
 
     //로딩 상태 처리

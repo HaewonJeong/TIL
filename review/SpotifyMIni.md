@@ -215,3 +215,33 @@ git push origin 내브랜치이름
 라이브러리 확인: 혹시 모르니 npm install 한 번 해주기
 서버 켜기: npm run dev 와 npm run db
 ```
+
+- 내가 작업한 코드 합치기
+1. 현재 main 작업 내용을 내 branch에 최신화 한다. : git pull origin main 
+2. 내 branch를 push 해서 Pull Request를 보낸다. : git push origin feature/playlist
+3. Github > Pull Request 생성 > 보여줄 코멘트를 작성하고 Create pull reqeust > 팀원이 코멘트를 남기고 [merge pull reqeust]
+* 궁금한 점 : 만약 둘 다 Header.jsx를 개발했으면 어떡하죠? : 그때는 논의 합니다.
+
+* 참고: 이렇게 하면 PR 없이 merge 된다. 실무에서는 PR를 날려 팀원 검토 하기
+1. 메인 브랜치로 이동
+git checkout main
+2. 혹시 모르니 메인 브랜치의 최신 상태 가져오기
+git pull origin main
+3. 내 작업 브랜치를 메인으로 합치기 (Merge)
+git merge feature/playlist
+4. 합쳐진 결과를 GitHub(Main)에 반영하기
+git push origin main
+
+동료가 올린 코드 내 작업 공간으로 가져오기
+1단계: 동료의 최신 코드를 내 로컬 main으로 가져오기
+git checkout main          # 1. 메인 브랜치로 이동
+git pull origin main       # 2. 동료가 올린 최신 코드를 다운로드
+2단계: 최신 main 코드를 내 작업 브랜치로 가져오기
+git checkout feature/playlist    # 1. 내 작업 브랜치로 이동
+git merge main                   # 2. 최신 main 내용을 내 브랜치에 합침
+
+내 branch에서 작업 하다가, 팀원의 main 작업 코드 받아올때
+- git stash : 작업을 잠깐 치워두기 (git add, commit과 다름)
+
+package.json 파일 설정 인스톨 명령어
+- npm install - package.json

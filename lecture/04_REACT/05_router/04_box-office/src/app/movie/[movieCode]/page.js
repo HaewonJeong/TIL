@@ -34,5 +34,5 @@ export default function MovieDetail(){
             </div>
         </>
     )
-
+d
 }

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useCartStore = create( (set)=> ({
+export const useCarStore = create( (set)=> ({
 //React hook 중 하나. 
 //use로 시작해, Store로 끝나게 명명
 

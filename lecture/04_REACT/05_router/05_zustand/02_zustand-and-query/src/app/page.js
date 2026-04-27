@@ -1,6 +1,6 @@
 'use client'
 
-import { useCartStore } from "@/store/useCartStore";
+import { useCartStore } from "@/store/useCarStore";
 import { useUIStore } from "@/store/useUIStore";
 import { useUserStore } from "@/store/useUserStore";
 import Link from "next/link";
