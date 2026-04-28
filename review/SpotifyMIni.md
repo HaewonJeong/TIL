@@ -245,3 +245,5 @@ git merge main                   # 2. 최신 main 내용을 내 브랜치에 합
 
 package.json 파일 설정 인스톨 명령어
 - npm install - package.json
+
+ git restore --staged db.json
