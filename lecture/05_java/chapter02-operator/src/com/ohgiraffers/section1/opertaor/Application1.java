@@ -106,7 +106,5 @@ public class Application1 {
         //and일때 첫번째 항이 f이므로 뒤항은 실행되지 않음. 결과는 10.
         System.out.println("result2: "+result2);
 
-
-
     }
 }

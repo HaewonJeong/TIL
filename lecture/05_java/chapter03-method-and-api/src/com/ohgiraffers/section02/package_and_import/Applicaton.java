@@ -1,4 +1,4 @@
-package com.ohgiraffers.section2.package_and_import;
+package com.ohgiraffers.section02.package_and_import;
 import com.ohgiraffers.section01.method.Calculator;
 import static com.ohgiraffers.section01.method.Calculator.maxNumberOf;
 

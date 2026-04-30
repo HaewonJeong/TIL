@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/com.greedy.level01.basic.Calculator.iml" filepath="$PROJECT_DIR$/com.greedy.level01.basic.Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter05-array.iml" filepath="$PROJECT_DIR$/chapter05-array.iml" />
     </modules>
   </component>
 </project>
