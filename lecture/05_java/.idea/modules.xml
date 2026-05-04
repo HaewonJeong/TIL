@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/05_java.iml" filepath="$PROJECT_DIR$/.idea/05_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter01-literal-and-variable/chapter01-literal-and-variable.iml" filepath="$PROJECT_DIR$/chapter01-literal-and-variable/chapter01-literal-and-variable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter02-operator/chapter02-operator.iml" filepath="$PROJECT_DIR$/chapter02-operator/chapter02-operator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter03-method-and-api/chapter03-method-and-api.iml" filepath="$PROJECT_DIR$/chapter03-method-and-api/chapter03-method-and-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter04-control-flow/chapter04-control-flow.iml" filepath="$PROJECT_DIR$/chapter04-control-flow/chapter04-control-flow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter05-array/chapter05-array.iml" filepath="$PROJECT_DIR$/chapter05-array/chapter05-array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter06-class-and-object/chapter06-class-and-object.iml" filepath="$PROJECT_DIR$/chapter06-class-and-object/chapter06-class-and-object.iml" />
+    </modules>
+  </component>
+</project>
