@@ -1,0 +1,22 @@
+package com.ohgiraffer.section03.interfaceimplements;
+
+//연결 가능한 장치들의 '표준 규격 계약서' 이다.
+public interface IConnectable {
+
+    //인터페이스 변수 : 자동으로 public static final
+    //구현체 모두가 공유하는 규격값
+    public static final int MAX_CONNECTION_COUNT = 4;
+    //참고)상수 네이밍 규칙 : 대문자로 작성하고, 단어 사이 _(언더바)로 연결
+
+    //추상 메서드: 자동으로 public abstract
+    public abstract void connect();
+    void disConnect();
+
+    //default 메서드: 인터페이스에 기본 구현 제공
+    //기존 구현체를 수정하지 않고 새 기능을 추가 할 때 사용(하위 호환성)
+    public default void showStatus(){
+        System.out.println("장치가 대기 상태입니다.");
+    }
+
+
+}

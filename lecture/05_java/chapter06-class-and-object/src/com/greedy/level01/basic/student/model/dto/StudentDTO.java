@@ -22,9 +22,7 @@ public class StudentDTO {
         return "";
     }
 
-    public int getMath(int math){
-        return math;
-    }
+    public int getMath(){ return math; }
 
     public void setMath(int math){
         this.math = math;
