@@ -17,11 +17,6 @@ public class Member {
 
     public Member(Object o) {
     }
-
-    public String toString(){
-        return name+age+gender;
-    }
-
     public String getName() {
         return name;
     }
@@ -53,4 +48,9 @@ public class Member {
     public void setCouponCount(int couponCount) {
         this.couponCount = couponCount;
     }
+
+    public String toString(){
+        return "name= "+name+", age= "+age+", gender= "+gender+", couponCount= "+couponCount;
+    }
+
 }

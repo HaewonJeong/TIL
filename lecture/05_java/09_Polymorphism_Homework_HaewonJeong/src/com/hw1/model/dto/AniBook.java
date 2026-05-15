@@ -11,7 +11,7 @@ public class AniBook extends Book{
     }
 
     public String toString(){
-        return ""+accessAge;
+        return super.toString()+", accessAge= "+accessAge;
     }
 
     public int getAccessAge() {

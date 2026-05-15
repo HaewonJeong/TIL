@@ -14,8 +14,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public String toString(){
-        return title+author+publisher;
+    @Override
+    public String toString() {
+        return  "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", publisher='" + publisher + '\'';
     }
 
     public String getTitle() {
@@ -41,4 +44,5 @@ public class Book {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
+
 }

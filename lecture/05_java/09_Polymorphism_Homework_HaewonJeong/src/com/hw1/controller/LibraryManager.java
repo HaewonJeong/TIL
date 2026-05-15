@@ -1,5 +1,4 @@
-package com.hw1.controller;
-
+package com.hw1.controller; //데이터를 처리하는 역할(Controller)
 import com.hw1.model.dto.AniBook;
 import com.hw1.model.dto.Book;
 import com.hw1.model.dto.CookBook;
@@ -9,6 +8,10 @@ public class LibraryManager {
     private Member mem = new Member(null);
     private Book[] bList = new Book[5];
 
+    public LibraryManager() {
+    }
+
+    //*인스턴스 초기화 블럭 : 객체가 생성될 때 마다 실행되는 초기화 블럭으로 여러 생성자들 중에서 공통된 초기화 변수가 존재할 때 사용
     {
         bList[0] = new CookBook("백종원의 집밥", "백종원", "tvN", true);
         bList[1] = new AniBook("한번 더 해요", "미티", "원모어", 19);
@@ -20,9 +23,11 @@ public class LibraryManager {
     public void insertMember(Member mem){
         // 전달받은 mem 주소 값을 해당 회원 레퍼런스(mem)에 대입
         this.mem = mem;
+        //System.out.println("insertMember/ this.mem: "+this.mem);
     };
     public Member myInfo(){
         // 회원 레퍼런스(mem) 주소 값 리턴
+        //System.out.println("myInfo/ mem: "+mem);
         return mem;
     }
     public Book[] selectAll(){
@@ -38,26 +43,32 @@ public class LibraryManager {
         // 검색결과의 도서목록에 담기  HINT : count 이용
         int cnt = 0;
         for(int i = 0 ; i < searchbList.length; i++){
-            cnt++;
-            if( keyword.contains( bList[0].getTitle() )){
-                searchbList[cnt] = bList[0];
+            if( bList[i].getTitle().contains( keyword )){
+                searchbList[cnt] = bList[i];
+                cnt++;
             }
         }
         // 해당 검색결과의 도서목록 주소 값 리턴
         return searchbList;
     }
     public int rentBook(int index){
-        // int result = 0;
         int result = 0;
-        // 전달 받은 index의 bList 객체가 만화책을 참조하고 있고
-        // 해당 만화책의 제한 나이와 회원의 나이를 비교하여 회원 나이가 적을 경우
-        // result를 1로 초기화  나이제한으로 대여 불가
-        // 전달 받은 index의 bList 객체가 요리책을 참조하고 있고
-        // 해당 요리책의 쿠폰유무가 “유”일 경우
-        // 회원의 couponCount 1 증가 처리 후
-        // result를 2로 초기화  성공적으로 대여 완료, 요리학원 쿠폰 발급
-        // result 값 리턴
+        Book book = bList[index];
+        System.out.println("● 대여 예정 책 : "+book);
+        if(book instanceof AniBook)
+        {
+            if(  mem.getAge() <= ((AniBook)book).getAccessAge()){
+                result = 1;
+            }
+        }
+        if(book instanceof CookBook)
+        {
+            if ( ((CookBook)book).isCoupon() ){
+                mem.setCouponCount(mem.getCouponCount()+1);
+                result = 2;
+            }
+        }
 
-        return 0;
+        return result;
     }
 }
