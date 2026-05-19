@@ -20,6 +20,13 @@ public class MenuDTO {
 
     }
 
+    public MenuDTO(String menuName, int menuPrice, int categoryCode, String orderableStatus) {
+        this.menuName = menuName;
+        this.menuPrice = menuPrice;
+        this.categoryCode = categoryCode;
+        this.orderableStatus = orderableStatus;
+    }
+
     public int getMenuCode() {
         return menuCode;
     }
