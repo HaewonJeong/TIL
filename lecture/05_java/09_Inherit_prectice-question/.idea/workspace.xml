@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b4b9864-05f6-4daa-98dd-dba4d1183257" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../SpotifyMini" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SpotifyMini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../04_REACT/05_router/05_zustand/SpotifyMini" beforeDir="false" afterPath="$PROJECT_DIR$/../../04_REACT/05_router/05_zustand/SpotifyMini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/17_Stream_practice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/src/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/src/MovieTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../17_Stream_practice/src/TicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../09_Polymorphism_Homework_HaewonJeong/src/com/hw1/controller/LibraryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../09_Polymorphism_Homework_HaewonJeong/src/com/hw1/controller/LibraryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../09_Polymorphism_Homework_HaewonJeong/src/com/hw1/view/LibraryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../09_Polymorphism_Homework_HaewonJeong/src/com/hw1/view/LibraryMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Chapter17-stream/src/com/ohgiraffers/section01/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Chapter17-stream/src/com/ohgiraffers/section01/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/../java-algorithm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +26,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "HaewonJeong"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/HaewonJeong/Songpa-TIL.git",
+    "accountId": "57647690-114b-4901-a0b2-11799094f8e4"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1,
   &quot;fromUser&quot;: false
@@ -64,6 +83,7 @@
       <updated>1778143359105</updated>
       <workItem from="1778143360124" duration="348000" />
       <workItem from="1778198596908" duration="696000" />
+      <workItem from="1779015008835" duration="1932000" />
     </task>
     <servers />
   </component>
