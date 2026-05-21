@@ -30,6 +30,8 @@ public class MemoApiServlet extends HttpServlet {
         resp.setContentType("application/json; charset=UTF-8");
         //writeValue(출력 대상, 자바객체)
         mapper.writeValue(resp.getWriter(), memos); //memos 객체를 Json으로 바꿔 HTTP 객체로 출력
+
+
         /*
         * 1. mapper는 "저장소"가 아니라 "변환기"야!
         우리가 맨 위에 private static final ObjectMapper mapper = new ObjectMapper(); 라고 선언해 둔 거 기억나지?
@@ -67,6 +69,7 @@ public class MemoApiServlet extends HttpServlet {
         memos.add(savedMemo);
 
         //다시 가진 응답을 getWriter를 이용해 JSON으로 바꿔 응답
+        //savedMemo를 Json로 바꿔 응답
         resp.setStatus(HttpServletResponse.SC_CREATED);
         mapper.writeValue(resp.getWriter(), savedMemo);
 
