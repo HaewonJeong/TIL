@@ -47,6 +47,7 @@ public class MemoApiServlet extends HttpServlet {
         registMemo(req, resp);
     }
 
+
     private void registMemo(HttpServletRequest req, HttpServletResponse resp)
             throws IOException { //getReader() 예외 처리를 위해 method signature에 Throws 선택
 
