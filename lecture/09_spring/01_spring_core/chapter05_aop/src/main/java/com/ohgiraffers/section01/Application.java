@@ -17,7 +17,7 @@ public class Application {
         System.out.println(memberService.selectMembers());
 
         System.out.println("==========selectMember==========");
-        System.out.println(memberService.selectMember(1L));
+        System.out.println(memberService.selectMember(2L)); //없는 회원 ID 전달
 
     }
 }
