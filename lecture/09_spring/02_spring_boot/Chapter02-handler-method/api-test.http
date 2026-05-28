@@ -1,0 +1,41 @@
+### 1. @RequestParam - query string 각각 받기
+GET http://localhost:8080/api/v1/menus?keyword=coffe&categoryCode=2&page=1
+
+### 2. @RequestParam - query string 전체 받기
+GET http://localhost:8080/api/v1/menus/search?keyword=coffe&categoryCode=2&page=1
+
+### 3. @PathVariable - URL 경로 값 받기
+GET http://localhost:8080/api/v1/menus/5
+
+### 4. @RequestBody - JSON 요청 본문을 DTO로 받기
+POST http://localhost:8080/api/v1/menus
+Content-Type: application/json    //요청 보내는 Type 명시 필요
+//MenuDTO 변수와 동일해야함
+//헤더와 JSON 바디 사이는 반드시 '한 줄' 띄우기!
+
+{
+    "name" : "아이스 아메리카노",
+    "price" : 5000,
+    "categoryCode" : 2,
+    "orderableStatus": "Y"
+}
+
+### 5. @RequestBody - 요청 본문을 문자열로 그대로 받기
+POST http://localhost:8080/api/v1/menus/raw
+Content-Type: text/plain
+
+plain text
+
+### 6. @RequestHeader, @CookieValue
+GET http://localhost:8080/api/v1/menus/request-info
+User-Agent: IntelliJ HTTP Client(sent reqeust by IntelliJ test tool)
+cookie: JSESSIONID=test-session-id
+
+### 7. HTTPSession - session에 값 저장
+POST localhost:8080/api/v1/menus/session?id=user01
+
+### 8. HttpSession - session 값 조회
+GET http://localhost:8080/api/v1/menus/session
+
+### 9. HttpSession - session 만료
+DELETE http://localhost:8080/api/v1/menus/session
