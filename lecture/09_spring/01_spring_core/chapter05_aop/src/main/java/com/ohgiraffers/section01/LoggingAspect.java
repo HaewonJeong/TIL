@@ -28,7 +28,6 @@ public class LoggingAspect {
     * Weaving: Target에 Advice가 적용되는 과정*/
     //방금 위에서 정한 감시 구역(logPointcut) 안에서, 대상 메서드가 실행되기 바로 직전(Before)에 내가 짠 감시 코드를 먼저 실행할게!" 라는 뜻
     @Before("LoggingAspect.logPointcut()")
-
     //JoinPoint : 현재 실행 지점의 정보를 담고 있는 객체(Advice가 끼어들 수 있는 실행 지점)
     public void logBefore(JoinPoint joinPoint) {
         // 1. "스프링아, 방금 실행된 그 메서드가 들어있는 '진짜 클래스 객체(타겟)'가 누구냐?"
@@ -50,8 +49,8 @@ public class LoggingAspect {
     //에러가 나도 실행된다. 그래서 보통 로그를 남길때 사용한다.
     @After("logPointcut()")
     public void logAfter(JoinPoint joinPoint) {
-        System.out.println("After : " + joinPoint.getTarget());
-        System.out.println("After : " + joinPoint.getSignature());
+        System.out.println("After joinPoint.getTarget() : " + joinPoint.getTarget());
+        System.out.println("After joinPoint.getSignature() : " + joinPoint.getSignature());
     }
 
     //returning 속성은 리턴값으로 반환되는 값을 객체로 받것이다. (result -> result) <--사실 이부분 잘 모르곘음

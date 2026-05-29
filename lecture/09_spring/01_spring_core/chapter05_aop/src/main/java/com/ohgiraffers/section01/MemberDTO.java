@@ -31,7 +31,7 @@ public class MemberDTO {
 
     @Override
     public String toString() {
-        return "MemberDTO{" +
+        return "To String: MemberDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
