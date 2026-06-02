@@ -16,11 +16,8 @@ public class StopwatchInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         long startTime = System.currentTimeMillis();
-
         request.setAttribute(START_TIME, startTime); //요청 객체 안에 시작 시간을 임시 보관
-
         System.out.println("[Stopwatch] preHandle " + request.getMethod() + " " + request.getRequestURI());
-
         return true; //요청 게속 진행, false를 반환하면 Controller가 실행되지 않음
     }
 
@@ -35,9 +32,7 @@ public class StopwatchInterceptor implements HandlerInterceptor {
         //startTimeAttribute가 Long 타입이면 그 값을 Long으로 캐스팅해서 startTime 변수로 바로 사용
         if(startTimeAttribute instanceof Long startTime){
             long elapsedTime = System.currentTimeMillis() - startTime;
-
             response.setHeader("X-Elapsed-Time", elapsedTime + "ms");
-
             System.out.println("[Stopwatch] afterCompletion " + request.getMethod()
                     + " " + request.getRequestURI()
                     + " " + elapsedTime + "ms");
