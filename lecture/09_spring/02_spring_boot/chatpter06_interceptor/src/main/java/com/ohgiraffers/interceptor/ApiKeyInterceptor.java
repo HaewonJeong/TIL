@@ -24,6 +24,8 @@ public class ApiKeyInterceptor implements HandlerInterceptor {
         this.objectMapper = objectMapper;
     }
 
+
+    //preHandle: Controller 실행전에 호출, false를 반환하면 요청 중단
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         /*Controller에 도착하기 전에 요청 헤더에서 API Key를 꺼낸다.*/
@@ -33,7 +35,9 @@ public class ApiKeyInterceptor implements HandlerInterceptor {
             System.out.println("[ApiKey] authorized " + request.getMethod() + " " + request.getRequestURI());
             return true;
         }
+
         System.out.println("[ApiKey] unauthorized " + request.getMethod() + " " + request.getRequestURI());
+
         response.setStatus(HttpStatus.UNAUTHORIZED.value()); //401
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding("UTF-8");

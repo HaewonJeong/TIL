@@ -42,11 +42,11 @@ public class MenuController {
     public ResponseEntity<Map<String, Object>> registMenu(@RequestBody MenuDTO menu){
         menus.add(menu);
 
-        Map<String, Object> respones = new LinkedHashMap<>();
-        respones.put("message", "관리자 메뉴 등록 성공");
-        respones.put("menu", menu);
+        Map<String, Object> responds = new LinkedHashMap<>();
+        responds.put("message", "관리자 메뉴 등록 성공");
+        responds.put("menu", menu);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(respones);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responds);
     }
 
 }
