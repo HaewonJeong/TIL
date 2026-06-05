@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="config/connection-info.properties"/>
+    <!--MyBatis가 DB 연결 정보를 별도 파일에서 읽어오도록 설정-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--별칭 설정-->
+    <typeAliases>
+        <typeAlias type="com.ohgiraffers.section01.SearchCriteria" alias="SearchCriteria"/>
+        <typeAlias type="com.ohgiraffers.section01.MenuDTO" alias="MenuDTO"/>
+    </typeAliases>
+
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!-- Mapper 인터페이스를 찾을 패키지 지정-->
+        <package name ="com.ohgiraffers.section01"/>
+    </mappers>
+</configuration>
