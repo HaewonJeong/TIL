@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="config/connection-info.properties"/>
-    <!--MyBatis가 DB 연결 정보를 별도 파일에서 읽어오도록 설정-->
+<!--    MyBatis가 DB 연결 정보를 별도 파일에서 읽어오도록 설정-->
     <settings>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
