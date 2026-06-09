@@ -50,4 +50,33 @@
         order by category_code
     </select>
 
+    <!--parameterType: ~~MenuDTO :  DTOO의 getPrice~ getName~ getter에서 값을 받아와 바인딩 해준다.-->
+    <!--keyProperty="code": DB가 자동 생성한 key값을 다시 받아온다.-->
+        <!-- keyProperty="code" 받아온 key 값을 MenuDTO의 code 프로퍼티에 넣는다. -->
+    <!-- useGeneratedKeys="true" : INSERT 후 DB가 생성한 AUTO_INCREMENT 값을 가져와라-->
+        <!-- keyProperty="code" : 받아온 AUTO_INCREMENT 값을 DTO의 code 필드에 넣어라-->
+    <insert id="registMenu" parameterType="com.ohgiraffers.springmybatis.menu.model.dto.MenuDTO"
+        useGeneratedKeys = "true" keyProperty="code" >
+        insert into tbl_menu
+        (menu_name, menu_price, category_code, orderable_status)
+        values
+        ( #{ name }, #{ price }, #{ categoryCode }, #{ orderableStatus } )
+    </insert>
+
+    <update id="modifyMenu" parameterType="com.ohgiraffers.springmybatis.menu.model.dto.MenuDTO">
+        update tbl_menu
+            set menu_name = #{ name }
+                , menu_price = #{ price }
+                , category_code = #{ categoryCode }
+                , orderable_status = #{ orderableStatus }
+        where menu_code = #{ code }
+    </update>
+
+    <!--실제로는 판매 여부 N으로 바꾸는 soft delete인 update를 작성한다.-->
+    <update id="deleteMenu" parameterType="_int">
+        update tbl_menu
+                set orderable_status = 'N'
+        where menu_code = #{ menuCode }
+    </update>
+
 </mapper>

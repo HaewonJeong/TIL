@@ -16,4 +16,14 @@ public interface MenuMapper {
     MenuDTO findMenuByCode(@Param("menuCode") int menuCode);
 
     List<CategoryDTO> findAllCategory();
+
+    //영향을 받은 행의 갯수 반환
+    int registMenu(MenuDTO newMenu);
+
+    int modifyMenu(MenuDTO menu);
+
+    //Mapper XML에서 #{ menuCode }라는 이름으로 사용할 수 있도록 매개변수에 이름을 지정한다.
+    //실제로는 soft delete인 update를 작성한다.
+    int deleteMenu(@Param("menuCode") int menuCode);
+
 }
