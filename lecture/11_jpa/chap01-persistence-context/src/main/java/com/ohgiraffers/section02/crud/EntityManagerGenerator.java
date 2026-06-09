@@ -16,4 +16,5 @@ public class EntityManagerGenerator {
 
         return factory.createEntityManager();
     }
+
 }

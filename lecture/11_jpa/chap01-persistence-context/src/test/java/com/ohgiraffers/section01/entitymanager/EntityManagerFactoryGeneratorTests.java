@@ -12,7 +12,6 @@ public class EntityManagerFactoryGeneratorTests {
     @Test
     @DisplayName("엔티티 매니저 팩토리 생성 확인")
     void testGenerateEntityManagerFactory() {
-
         // given
 
         // when
