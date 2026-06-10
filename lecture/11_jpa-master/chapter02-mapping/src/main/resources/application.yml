@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    # MySQL JDBC ???? ??
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    # ??? DB ??
+    url: jdbc:mysql://localhost:3306/menudb
+
+    # DB ??
+    username: ohgiraffers
+
+    # DB ????
+    password: ohgiraffers
+
+  jpa:
+    # ???? SQL ??
+    show-sql: true
+
+    # ??? DB ??
+    database: mysql
+
+    hibernate:
+      # ?????? ?? ? ??? ??
+      ddl-auto: create
+
+    properties:
+      hibernate:
+        # SQL ??? ??
+        format_sql: true

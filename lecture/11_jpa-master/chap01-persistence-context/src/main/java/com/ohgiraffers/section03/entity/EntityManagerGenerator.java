@@ -1,4 +1,4 @@
-package com.ohgiraffers.section03;
+package com.ohgiraffers.section03.entity;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

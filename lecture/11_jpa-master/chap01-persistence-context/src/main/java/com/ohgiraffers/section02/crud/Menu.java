@@ -1,16 +1,15 @@
 package com.ohgiraffers.section02.crud;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity(name="Section02Menu")
 @Table(name="tbl_menu")
 public class Menu {
 
-    @Id
+    @Id //menuCode가 PK(기본키)이다.
     @Column(name = "menu_code")
+    //PK 값을 DB가 자동 생성한다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int menuCode;
     @Column(name="menu_name")
     private String menuName;
@@ -24,8 +23,7 @@ public class Menu {
     protected Menu() {
     }
 
-    public Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
-        this.menuCode = menuCode;
+    public Menu(String menuName, int menuPrice, int categoryCode, String orderableStatus) {
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.categoryCode = categoryCode;
