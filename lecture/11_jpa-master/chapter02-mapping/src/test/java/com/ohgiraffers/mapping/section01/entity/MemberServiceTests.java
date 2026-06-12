@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class MemberServiceTests {
     @Autowired
@@ -39,6 +41,7 @@ public class MemberServiceTests {
                 )
         );
     }
+
     @DisplayName("테이블 생성 테스트")
     @ParameterizedTest
     @MethodSource("getMember")
@@ -64,4 +67,32 @@ public class MemberServiceTests {
                 () -> memberService.registMember(newMember)
         );
     }
+
+    @DisplayName("프로퍼티 테스트")
+    @ParameterizedTest
+    @MethodSource("getMember")
+    // JPA에서 변수 접근 방법 : 1.필드 직접 접근 2.게터 사용
+    //여기서는 게터 방식을 사용해본다.
+    void testAccessProperty(
+            String memberId, String memberPwd,
+            String memberName, String phone, String address,
+            LocalDateTime enrollDate, MemberRole memberRole, String status
+    ) {
+        //given
+        MemberRegistDTO newMember = new MemberRegistDTO(
+                memberId,
+                memberPwd,
+                memberName,
+                phone,
+                address,
+                enrollDate,
+                memberRole,
+                status
+        );
+        //when
+        String registedName = memberService.registMemberFindName(newMember);
+        //then
+        assertEquals(memberName + " 님", registedName);
+    }
+
 }

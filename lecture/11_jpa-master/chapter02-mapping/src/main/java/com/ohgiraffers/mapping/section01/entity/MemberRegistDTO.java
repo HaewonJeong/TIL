@@ -106,4 +106,5 @@ public class MemberRegistDTO {
                 ", status='" + status + '\'' +
                 '}';
     }
+
 }

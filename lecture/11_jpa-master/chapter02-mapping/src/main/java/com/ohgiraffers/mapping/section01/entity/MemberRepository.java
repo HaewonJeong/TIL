@@ -15,4 +15,12 @@ public class MemberRepository {
         entityManager.persist(member);
     }
 
+    public String findNameById(String memberId){
+        //Table 명이 아니라 Entity 명을 기준으로 들어간다.
+        //별칭이 필수
+        String jpql = "SELECT m.memberName FROM entityMember m WHERE m.memberId = ' " + memberId + " ' ";
+        //쿼리를 실행해 반환 받아오는 결과 리턴
+        return entityManager.createQuery(jpql, String.class).getSingleResult();
+
+    }
 }

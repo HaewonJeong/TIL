@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 //Entity 이름을 지정. 만약 작성하지 않으면 class 이름을 엔티티 명으로 사용한다.
 @Entity(name = "entityMember")
 @Table(name = "tbl_member")
+//엔티티의 접근방식
+@Access(AccessType.FIELD)
 public class Member {
 
     //PK 지정. 지정하지 않으면 have primary key~ 에러 남
@@ -15,6 +17,9 @@ public class Member {
     //자동 생성 전략을 지정. 스프링은 GenerationType.IDENTITY로 전략 가져가기.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberNo;
+
+    //Access를 필드 레벨에도 달 수 있다.
+    @Access(AccessType.FIELD)
     @Column(
             //컬럼 제약 조건 unique : 고유값, nullable = false : notnull 등..
             name = "member_id", unique = true,
@@ -23,6 +28,10 @@ public class Member {
     private String memberId;
     @Column(name = "member_pwd", nullable = false)
     private String memberPwd;
+
+    //필드에 접근할 떄 FIELD가 아닌 PROPERTY 방식을 통해 접근해라.
+    //GETTER 메서드를 통해 접근한다.
+    @Access(AccessType.PROPERTY)
     @Column(name = "member_name")
     private String memberName;
 
@@ -62,6 +71,15 @@ public class Member {
         this.enrollDate = enrollDate;
         this.memberRole = memberRole;
         this.status = status;
+    }
+
+    public String getMemberName() {
+        System.out.printf("getMemberName 메소드를 통한 Access 확인");
+        return memberName + " 님";
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 }
 

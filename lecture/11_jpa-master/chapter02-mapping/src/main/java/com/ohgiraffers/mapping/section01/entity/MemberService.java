@@ -32,4 +32,10 @@ public class MemberService {
 
     }
 
+    @Transactional
+    public String registMemberFindName(MemberRegistDTO newMember) {
+        registMember(newMember);
+        return memberRepository.findNameById(newMember.getMemberId());
+    }
+
 }
