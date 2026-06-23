@@ -1,5 +1,8 @@
-package com.ohgiraffers.springsecurity;
+package com.ohgiraffers.springsecurity.test;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 public class EncodingDecoding {
@@ -17,5 +20,23 @@ public class EncodingDecoding {
 
         byte[] decodeByte = decoder.decode("YmFzZTY066Gc7J247L2U65Sp7ZWc67mE67CA7YKk");
         System.out.println("new String(decodeByte) = " + new String(decodeByte));
+
+        /* HS512를 위한 KeyGenerator 생성 */
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA512");
+            keyGenerator.init(512); // 512 비트 키 사이즈 설정
+
+            /* 비밀 키 생성 */
+            SecretKey secretKey = keyGenerator.generateKey();
+            System.out.println("secretKey.getEncoded() = " + secretKey.getEncoded());
+
+            /* 키를 Base64로 인코딩하여 문자열로 변환 */
+            String encodedKey = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+            System.out.println("HS512 Key : " + encodedKey); //해당 key 값을 yml에 넣어 키로 사용. 절대 코드에 넣으면 안됨!!!!!!!!!!!
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

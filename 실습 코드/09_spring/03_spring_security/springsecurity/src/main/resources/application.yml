@@ -1,0 +1,20 @@
+spring:
+    application:
+        name : springsecurity
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/cqrs
+        username: spcamp
+        password: spcamp
+    jpa:
+        hibernate:
+            ddl-auto: create
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
+    jwt:
+        secret: u3Yteve1SjgBJBpqRCziykaty9NenT95t1OMTHeJQUUqv2vao2r3jHZsV2HvUMRnmbQEOZYygh6q3eU6XjsMbg==
+        expiration: 1800000 # 30분 (access token) ..Access Token의 유효 시간 (단위: 밀리초)
+        refresh-expiration: 60480000 # 7일(refresh token) ..Refresh Token의 유효 시간 (단위: 밀리초)
+        # Access Token (30분 유효) → 만료되면 → Refresh Token(원래 의도: 7일 유효)으로 재발급
