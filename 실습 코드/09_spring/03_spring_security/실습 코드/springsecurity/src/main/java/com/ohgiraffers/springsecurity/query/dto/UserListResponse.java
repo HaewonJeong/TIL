@@ -3,9 +3,11 @@ package com.ohgiraffers.springsecurity.query.dto;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 @Builder
-public class UserDetailResponse {
+public class UserListResponse {
 
-    private UserDto user;
+    private List<UserDto> users;
 }

@@ -13,6 +13,11 @@ spring:
         properties:
             hibernate:
                 format_sql: true
+    mybatis:
+        configuration:
+            map-underscore-to-camel-case: true
+        mapper-locations: mappers/**/*.xml
+        typ-aliases-package: com.ohgiraffers.springsecrutiy.query.dto
     jwt:
         secret: u3Yteve1SjgBJBpqRCziykaty9NenT95t1OMTHeJQUUqv2vao2r3jHZsV2HvUMRnmbQEOZYygh6q3eU6XjsMbg==
         expiration: 1800000 # 30분 (access token) ..Access Token의 유효 시간 (단위: 밀리초)

@@ -5,18 +5,17 @@
 <mapper namespace="com.ohgiraffers.springsecurity.query.mapper.UserMapper">
     <select id="findUserByUsername" resultType="UserDto">
         SELECT
-            username
-            , role
-            FROM users
-        WHERE username = #{ username }
+               username
+             , role
+          FROM users
+         WHERE username = #{ username }
     </select>
 
     <select id="findAllUsers" resultType="UserDto">
         SELECT
-            username, role FROM users WHERE role = 'USER'
-            , role
-            FROM users
-            WHERE role = 'USER'
-
+               username
+             , role
+          FROM users
+         WHERE role = 'USER'
     </select>
 </mapper>

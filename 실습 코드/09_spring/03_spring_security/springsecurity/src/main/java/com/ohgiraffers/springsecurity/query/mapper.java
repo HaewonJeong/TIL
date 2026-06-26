@@ -1,4 +1,10 @@
 package com.ohgiraffers.springsecurity.query;
 
-public class mapper {
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
+
+@Service
+@Mapper
+public class UserQueryService {
+    private final UserMapper userMapper;
 }

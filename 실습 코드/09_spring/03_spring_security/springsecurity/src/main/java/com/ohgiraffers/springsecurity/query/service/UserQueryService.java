@@ -1,4 +1,4 @@
-package com.ohgiraffers.springsecurity.query;
+package com.ohgiraffers.springsecurity.query.service;
 
 public class UserQueryService {
 }

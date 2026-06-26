@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: springsecurity
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cqrs
+    username: spcamp
+    password: spcamp
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mappers/**/*.xml
+  type-aliases-package: com.ohgiraffers.springsecurity.query.dto
+jwt:
+  secret: EnYWKPOinJ4I0rMzjh8jOVXDyfLScTdXoKrXw4ddB670YWftt/LxWYTzFPYrJkNvFLx82gQa/StI4It3aDqrgQ==
+  expiration: 1800000   # 30분 (access token)
+  refresh-expiration: 604800000 # 7일(refresh token)
